@@ -11,7 +11,7 @@ class InstructionParser:
         self.weekdays = [0, 1, 2, 3, 4]
         self.df=pd.read_csv(instruction_file)
         self.fixSettlementDates()
-    
+
     # Print everything. Saves calling individual functions, though it's important to seperate
     # them for the purpose of testing
     def printAllReports(self):
@@ -80,7 +80,7 @@ class InstructionParser:
         new_df = new_df.sort_index()
         print(new_df)
         print('\n')
-        return new_df 
+        return new_df
 
     def printEntityReports(self):
         unique_entities = self.df.Entity.unique()

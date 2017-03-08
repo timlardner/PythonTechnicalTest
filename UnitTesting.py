@@ -37,7 +37,7 @@ class ParserTest(unittest.TestCase):
         self.assertEqual(best_outgoing.loc['Test','Outgoing'],2)
         self.assertEqual(best_incoming.loc['Foobar','Incoming'],2)
         self.assertEqual(best_outgoing.loc['Foobar','Outgoing'],0)
-    
+
     # Check the known results from the given dataset.
     def test_given_csv(self):
         filename = "SampleData.csv"
@@ -65,9 +65,9 @@ class ParserTest(unittest.TestCase):
         test = vals == sorted(vals)
         self.assertEqual(test,True)
 
-    # We've got a settlement before the instruction in DateTest.csv. It also occurs on a weekend. 
-    # We expect the settlement date to be moved to the instruction date then moved again when the 
-    # weekend check is evaluated. The date should be moved to 13th March, which will be the only 
+    # We've got a settlement before the instruction in DateTest.csv. It also occurs on a weekend.
+    # We expect the settlement date to be moved to the instruction date then moved again when the
+    # weekend check is evaluated. The date should be moved to 13th March, which will be the only
     # occurrence of this date.
     def test_settlement_before_instruction(self):
         filename = "DateTest.csv"
