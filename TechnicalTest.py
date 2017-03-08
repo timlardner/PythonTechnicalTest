@@ -50,7 +50,7 @@ class InstructionParser:
             Instruction = row['InstructionDate']
             ActualSettlement = self.checkSettlement(Settlement,Instruction,Currency)
             self.df.loc[idx,'ActualSettlement'] = datetime.datetime.strftime(ActualSettlement,'%d-%b-%y')
-    
+
     def calculateUSD(self):
         self.df['USD'] = 0
         for idx,row in self.df.iterrows():
