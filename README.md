@@ -6,6 +6,8 @@ Usage: Create an instance of the *InstructionParser* class passing the path to a
 
 For example, run:
 
+    from TechnicalTest import InstructionParser
+
     Parser = InstructionParser('Transactions.csv')
     Parser.printAllReports()
     
