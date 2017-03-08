@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/timlardner/PythonTechnicalTest.svg?branch=master)](https://travis-ci.org/timlardner/PythonTechnicalTest)
-
 # PythonTechnicalTest
+
+[![Build Status](https://travis-ci.org/timlardner/PythonTechnicalTest.svg?branch=master)](https://travis-ci.org/timlardner/PythonTechnicalTest)
 
 Usage: Create an instance of the *InstructionParser* class passing the path to a .csv file as the only argument.
 
@@ -16,4 +16,4 @@ to print all reports. Subsections of reports can be printed individually using:
     Parser.printDayReports()
     Parser.printEntityReports()
     
-Unit tests is available in the *UnitTesting.py* source file and CI is enabled on this project via TravisCI.
+Unit tests is available in the *UnitTesting.py* source file and CI is enabled on this project via TravisCI. Multiple .csv files have been included in this repoistory for the purposes of testing.
