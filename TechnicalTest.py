@@ -41,7 +41,7 @@ class InstructionParser:
         days_to_shift = settlement_working_day - weekday_of_settlement
         actual_date = datetime_settlement + datetime.timedelta(days=days_to_shift)
         return actual_date
-    
+
     def fixSettlementDates(self):
         self.df['ActualSettlement'] = 0
         for idx,row in self.df.iterrows():
@@ -101,20 +101,15 @@ class InstructionParser:
         print('\n')
         best_outgoing = new_df.sort_values('Outgoing',ascending=False).drop('Incoming',1)
         for idx,val in enumerate(best_outgoing.index.values):
-            print(str(idx+1)+': '+val)        
+            print(str(idx+1)+': '+val)
         return best_incoming,best_outgoing
 
     # Test function. Print the dataframe.
     def printTable(self):
         print(self.df)
-        
+
 
 if __name__ == '__main__':
     filename = "SampleData.csv"
     Parser = InstructionParser(filename)
     Parser.printAllReports()
-
-
-
-
-

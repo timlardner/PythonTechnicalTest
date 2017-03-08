@@ -15,12 +15,15 @@ class ParserTest(unittest.TestCase):
         self.assertEqual(Parser.df.ActualSettlement[0],'06-Mar-17')
         self.assertEqual(Parser.df.ActualSettlement[1],'05-Mar-17')
 
-    # Ensure that we're summing correctly for multiple transactions on one date.
-    def test_day_reporting(self):
+    def get_simple_parser(self):
         filename = "SimpleData.csv"
         Parser = InstructionParser(filename)
         Parser.calculateUSD()
-        DayReport = Parser.printDayReports()
+        return Parser
+
+    # Ensure that we're summing correctly for multiple transactions on one date.
+    def test_day_reporting(self):
+        DayReport = self.get_simple_parser().printDayReports()
         self.assertEqual(DayReport.loc['06-Mar-17','Incoming'],5)
         self.assertEqual(DayReport.loc['06-Mar-17','Outgoing'],2)
         self.assertEqual(DayReport.loc['05-Mar-17','Incoming'],2)
@@ -29,10 +32,7 @@ class ParserTest(unittest.TestCase):
     # Check that we're summing correctly for multiple occurrences of the same entity in our list
     # of transactions.
     def test_entity_reporting(self):
-        filename = "SimpleData.csv"
-        Parser = InstructionParser(filename)
-        Parser.calculateUSD()
-        best_incoming,best_outgoing = Parser.printEntityReports()
+        best_incoming,best_outgoing = self.get_simple_parser().printEntityReports()
         self.assertEqual(best_incoming.loc['Test','Incoming'],5)
         self.assertEqual(best_outgoing.loc['Test','Outgoing'],2)
         self.assertEqual(best_incoming.loc['Foobar','Incoming'],2)
