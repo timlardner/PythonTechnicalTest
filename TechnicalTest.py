@@ -3,7 +3,7 @@
 
 import pandas as pd
 import datetime
-import unittest
+
 
 class InstructionParser:
     def __init__(self,instruction_file):
@@ -86,7 +86,7 @@ class InstructionParser:
         unique_entities = self.df.Entity.unique()
         new_df = pd.DataFrame(index=unique_entities,columns=['Incoming','Outgoing'])
         new_df = new_df.fillna(0)
-        for idx,row in self.df.iterrows():
+        for _,row in self.df.iterrows():
             ent = row['Entity']
             usd = row['USD']
             if usd<0:
@@ -105,6 +105,10 @@ class InstructionParser:
         print(self.df)
         
 
+if __name__ == '__main__':
+    filename = "SampleData.csv"
+    Parser = InstructionParser(filename)
+    Parser.printAllReports()
 
 
 
