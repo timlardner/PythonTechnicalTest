@@ -30,7 +30,7 @@ class InstructionParser:
                 return day_of_week
             else:
                 return self.weekdays[0]+7
-    
+
     def checkSettlement(self,settlement_date,instruction_date,currency):
         datetime_settlement = datetime.datetime.strptime(settlement_date, '%d-%b-%y')
         datetime_instruction = datetime.datetime.strptime(instruction_date, '%d-%b-%y')
@@ -82,6 +82,8 @@ class InstructionParser:
         print('\n')
         return new_df
 
+    # Print the ranking and name of each entity in order. If we want to print the actual values
+    # of the trades too, we simply print the dataframes themselves.
     def printEntityReports(self):
         unique_entities = self.df.Entity.unique()
         new_df = pd.DataFrame(index=unique_entities,columns=['Incoming','Outgoing'])
@@ -94,10 +96,12 @@ class InstructionParser:
             else:
                 new_df.loc[ent,'Outgoing'] = new_df.loc[ent,'Outgoing'] + usd
         best_incoming = new_df.sort_values('Incoming',ascending=False).drop('Outgoing',1)
-        print(best_incoming)
+        for idx,val in enumerate(best_incoming.index.values):
+            print(str(idx+1)+': '+val)
         print('\n')
         best_outgoing = new_df.sort_values('Outgoing',ascending=False).drop('Incoming',1)
-        print(best_outgoing)
+        for idx,val in enumerate(best_outgoing.index.values):
+            print(str(idx+1)+': '+val)        
         return best_incoming,best_outgoing
 
     # Test function. Print the dataframe.
